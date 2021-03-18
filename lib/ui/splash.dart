@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
+import '../router/delegate.dart';
 import '../router/ui_pages.dart';
 
 const String LoggedInKey = 'LoggedIn';
@@ -43,9 +43,9 @@ class _SplashState extends State<Splash> {
       _initialized = true;
       Timer(const Duration(milliseconds: 2000), () {
         if (loggedIn) {
-          OrdernowNavigator.of(context).delegate.replace(ListItemsPageConfig);
+          Delegate.instance.replace(ListItemsPageConfig);
         } else {
-          OrdernowNavigator.of(context).delegate.replace(LoginPageConfig);
+          Delegate.instance.replace(LoginPageConfig);
         }
       });
     }

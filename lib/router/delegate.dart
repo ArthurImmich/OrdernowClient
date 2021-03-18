@@ -8,13 +8,13 @@ import '../ui/list_items.dart';
 import '../ui/login.dart';
 import '../ui/settings.dart';
 import '../ui/splash.dart';
-import 'back_dispatcher.dart';
 import 'ui_pages.dart';
-
 class Delegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {
   //Pages list
   final List<Page> _pages = [];
+
+  static Delegate instance = Delegate();
 
   //Back button dispatcher
   BackButtonDispatcher backButtonDispatcher;
@@ -84,7 +84,8 @@ class Delegate extends RouterDelegate<PageConfiguration>
         child: child,
         key: Key(pageConfig.key),
         name: pageConfig.path,
-        arguments: pageConfig);
+        arguments: pageConfig
+        );
   }
 
   //Adds the MaterialPage to the _pages list

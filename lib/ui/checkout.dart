@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
 import '../cart_holder.dart';
+import '../router/delegate.dart';
 import '../router/ui_pages.dart';
 
 class Checkout extends StatelessWidget {
@@ -39,8 +39,7 @@ class Checkout extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      OrdernowNavigator.of(context).delegate
-                        .setNewRoutePath(ListItemsPageConfig);
+                      Delegate.instance.setNewRoutePath(ListItemsPageConfig);
                     },
                     child: const Text('Back To List'),
                   ),
@@ -48,8 +47,7 @@ class Checkout extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       cartHolder.clear();
-                      OrdernowNavigator.of(context).delegate
-                        .setNewRoutePath(ListItemsPageConfig);
+                      Delegate.instance.setNewRoutePath(ListItemsPageConfig);
                     },
                     child: const Text('Clear Cart'),
                   ),

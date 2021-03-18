@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
+import '../router/delegate.dart';
 import '../cart_holder.dart';
 import '../router/ui_pages.dart';
 
@@ -29,13 +29,12 @@ class Details extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   cartHolder.addItem('Item $id');
-                  OrdernowNavigator.of(context).delegate.popRoute();
+                  Delegate.instance.popRoute();
                 },
                 child: const Text('Add to Cart'),
               ),
               ElevatedButton(
-                onPressed: () => OrdernowNavigator.of(context).delegate
-                  .push(CartPageConfig),
+                onPressed: () => Delegate.instance.push(CartPageConfig),
                 child: const Text('Cart'),
               ),
             ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
 import '../cart_holder.dart';
+import '../router/delegate.dart';
 import '../router/ui_pages.dart';
 
 class Cart extends StatelessWidget {
@@ -20,8 +20,7 @@ class Cart extends StatelessWidget {
         actions: [
           IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
-              onPressed: () => OrdernowNavigator.of(context).delegate
-                .push(CheckoutPageConfig))
+              onPressed: () => Delegate.instance.push(CheckoutPageConfig))
         ],
       ),
       body: SafeArea(

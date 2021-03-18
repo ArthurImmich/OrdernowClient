@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
+import '../router/delegate.dart';
 import '../router/ui_pages.dart';
 
 class Login extends StatefulWidget {
@@ -81,8 +81,7 @@ class _LoginState extends State<Login> {
                                 color: Theme.of(context).primaryColor),
                           ),
                         ),
-                        onPressed: () => OrdernowNavigator.of(context).delegate
-                          .push(CreateAccountPageConfig),
+                        onPressed: () => Delegate.instance.push(CreateAccountPageConfig),
                         child: const Text(
                           'Create Account',
                           style: TextStyle(color: Colors.white),
@@ -103,8 +102,7 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () {
                           //saveLoginState();
-                          OrdernowNavigator.of(context).delegate
-                            .push(ListItemsPageConfig);
+                          Delegate.instance.push(ListItemsPageConfig);
                         },
                         child: const Text('Login'),
                       ),

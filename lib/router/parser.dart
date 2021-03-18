@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'ui_pages.dart';
 
 class Parser extends RouteInformationParser<PageConfiguration> {
+
+  //Converts the url into the navigation state.
+  //Called when the url is updated.
   @override
   Future<PageConfiguration> parseRouteInformation(
       RouteInformation routeInformation) async {
@@ -13,7 +16,8 @@ class Parser extends RouteInformationParser<PageConfiguration> {
       return SplashPageConfig;
     }
 
-    final path = uri.pathSegments[0];
+    final path = "/" + uri.pathSegments[0];
+    print(path);
 
     switch (path) {
       case SplashPath:
@@ -38,6 +42,8 @@ class Parser extends RouteInformationParser<PageConfiguration> {
 
   }
 
+  //Takes a navigation state and then convert it into a url.
+  //Called after routerDelegate.currentConfiguration
   @override
   RouteInformation restoreRouteInformation(PageConfiguration configuration) {
     switch (configuration.uiPage) {

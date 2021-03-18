@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
-import 'package:ordernow/ui/details.dart';
+import '../router/delegate.dart';
+import 'package:OrdernowClient/ui/details.dart';
 import '../router/ui_pages.dart';
 
 class ListItems extends StatelessWidget {
@@ -20,12 +20,10 @@ class ListItems extends StatelessWidget {
         actions: [
           IconButton(
               icon: const Icon(Icons.settings),
-              onPressed: () => OrdernowNavigator.of(context).delegate
-                .push(SettingsPageConfig)),
+              onPressed: () => Delegate.instance.push(SettingsPageConfig)),
           IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
-              onPressed: () => OrdernowNavigator.of(context).delegate
-                .push(CheckoutPageConfig))
+              onPressed: () => Delegate.instance.push(CheckoutPageConfig))
         ],
       ),
       body: SafeArea(
@@ -35,8 +33,7 @@ class ListItems extends StatelessWidget {
             return ListTile(
               title: Text('${items[index]}'),
               onTap: () {
-                OrdernowNavigator.of(context).delegate
-                  .pushWidget(Details(index), DetailsPageConfig);
+                Delegate.instance.pushWidget(Details(index), DetailsPageConfig);
               },
             );
           },

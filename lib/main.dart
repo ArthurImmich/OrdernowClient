@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/back_dispatcher.dart';
-import 'package:ordernow/router/navigator.dart';
-import 'package:ordernow/router/ui_pages.dart';
+import 'package:OrdernowClient/router/back_dispatcher.dart';
 import 'router/delegate.dart';
 import 'router/parser.dart';
 
 void main() => runApp(const OrdernowApp());
-
-
 
 class OrdernowApp extends StatefulWidget {
   const OrdernowApp({Key key}) : super(key: key);
@@ -17,25 +13,17 @@ class OrdernowApp extends StatefulWidget {
 }
 
 class _OrdernowAppState extends State<OrdernowApp> {
-
   final Parser _ordernowParser = Parser();
-  final Delegate _ordernowRouterDelegate =
-   Delegate();
   BackButtonDispatcher _backButtonDispatcher;
-
-  //contructor
-  _OrdernowAppState() {
-    _ordernowRouterDelegate.setNewRoutePath(SplashPageConfig);
-    _backButtonDispatcher = 
-      BackDispatcher(_ordernowRouterDelegate);
-  }
 
   //Set state according to URI
   Future<void> initPlatformState() async {
+    _backButtonDispatcher = BackDispatcher(Delegate.instance);
     final uri = Uri.base;
+    print("init platform");
     if (!mounted) return;
     setState(() {
-      _ordernowRouterDelegate.parseRoute(uri);
+      Delegate.instance.parseRoute(uri);
     });
   }
 
@@ -47,14 +35,11 @@ class _OrdernowAppState extends State<OrdernowApp> {
 
   @override
   Widget build(BuildContext context) {
-    return OrdernowNavigator(
-      delegate: _ordernowRouterDelegate,
-      child: MaterialApp.router(
-        title: 'Ordernow',
-        routeInformationParser: _ordernowParser,
-        routerDelegate: _ordernowRouterDelegate,
-        backButtonDispatcher: _backButtonDispatcher,
-      ),
+    return MaterialApp.router(
+      title: 'Ordernow',
+      routeInformationParser: _ordernowParser,
+      routerDelegate: Delegate.instance,
+      backButtonDispatcher: _backButtonDispatcher,
     );
   }
 }

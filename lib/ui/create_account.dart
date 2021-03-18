@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
+import '../router/delegate.dart';
 import '../router/ui_pages.dart';
 
 class CreateAccount extends StatefulWidget {
@@ -81,8 +81,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         ),
                         onPressed: () {
                           // saveLoginState();
-                          OrdernowNavigator.of(context).delegate
-                            .setNewRoutePath(ListItemsPageConfig);
+                          Delegate.instance.setNewRoutePath(ListItemsPageConfig);
                         },
                         child: const Text(
                           'Create Account',
@@ -103,8 +102,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           ),
                         ),
                         onPressed: () {
-                          OrdernowNavigator.of(context).delegate
-                            .popRoute();
+                          Delegate.instance.popRoute();
                         },
                         child: const Text('Cancel'),
                       ),

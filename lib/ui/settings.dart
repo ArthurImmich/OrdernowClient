@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ordernow/router/navigator.dart';
+import '../router/delegate.dart';
 import '../router/ui_pages.dart';
 
 class Settings extends StatelessWidget {
@@ -23,8 +23,7 @@ class Settings extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   // saveLoginState();
-                  OrdernowNavigator.of(context).delegate
-                    .setNewRoutePath(SplashPageConfig);
+                  Delegate.instance.setNewRoutePath(SplashPageConfig);
                 },
                 child: const Text('Log Out'),
               ),
