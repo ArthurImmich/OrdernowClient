@@ -13,31 +13,32 @@ class Parser extends RouteInformationParser<PageConfiguration> {
 
     //if there is no URI, returns splash
     if (uri.pathSegments.isEmpty) {
-      return SplashPageConfig;
+      return splashPageConfig;
     }
 
     final path = "/" + uri.pathSegments[0];
-    print(path);
 
     switch (path) {
       case SplashPath:
-        return SplashPageConfig;
+        return splashPageConfig;
       case LoginPath:
-        return LoginPageConfig;
+        return loginPageConfig;
       case CreateAccountPath:
-        return CreateAccountPageConfig;
+        return createAccountPageConfig;
       case ListItemsPath:
-        return ListItemsPageConfig;
+        return listItemsPageConfig;
       case DetailsPath:
-        return DetailsPageConfig;
+        PageConfiguration detailsConfiguration = detailsPageConfig;
+        detailsConfiguration.path = detailsConfiguration.path + "/" + uri.pathSegments[1];
+        return detailsConfiguration;
       case CartPath:
-        return CartPageConfig;
+        return cartPageConfig;
       case CheckoutPath:
-        return CheckoutPageConfig;
+        return checkoutPageConfig;
       case SettingsPath:
-        return SettingsPageConfig;
+        return settingsPageConfig;
       default:
-        return SplashPageConfig;
+        return splashPageConfig;
     }
 
   }

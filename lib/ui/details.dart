@@ -34,7 +34,7 @@ class Details extends StatelessWidget {
                 child: const Text('Add to Cart'),
               ),
               ElevatedButton(
-                onPressed: () => Delegate.instance.push(CartPageConfig),
+                onPressed: () => Delegate.instance.push(cartPageConfig),
                 child: const Text('Cart'),
               ),
             ],

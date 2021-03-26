@@ -22,26 +22,26 @@ enum Pages {
 
 class PageConfiguration {
   final String key;
-  final String path;
+  String path;
   final Pages uiPage;
 
-  const PageConfiguration(
+  PageConfiguration(
       {@required this.key, @required this.path, @required this.uiPage});
 }
 
-const PageConfiguration SplashPageConfig =
+PageConfiguration splashPageConfig =
     PageConfiguration(key: 'Splash', path: SplashPath, uiPage: Pages.Splash);
-const PageConfiguration LoginPageConfig =
+PageConfiguration loginPageConfig =
     PageConfiguration(key: 'Login', path: LoginPath, uiPage: Pages.Login);
-const PageConfiguration CreateAccountPageConfig = PageConfiguration(
-    key: 'CreateAccount', path: CreateAccountPath, uiPage: Pages.CreateAccount);
-const PageConfiguration ListItemsPageConfig = PageConfiguration(
-    key: 'ListItems', path: ListItemsPath, uiPage: Pages.List);
-const PageConfiguration DetailsPageConfig =
+PageConfiguration createAccountPageConfig = 
+    PageConfiguration(key: 'CreateAccount', path: CreateAccountPath, uiPage: Pages.CreateAccount);
+PageConfiguration listItemsPageConfig =
+    PageConfiguration(key: 'ListItems', path: ListItemsPath, uiPage: Pages.List);
+PageConfiguration detailsPageConfig =
     PageConfiguration(key: 'Details', path: DetailsPath, uiPage: Pages.Details);
-const PageConfiguration CartPageConfig =
+PageConfiguration cartPageConfig =
     PageConfiguration(key: 'Cart', path: CartPath, uiPage: Pages.Cart);
-const PageConfiguration CheckoutPageConfig = PageConfiguration(
-    key: 'Checkout', path: CheckoutPath, uiPage: Pages.Checkout);
-const PageConfiguration SettingsPageConfig = PageConfiguration(
-    key: 'Settings', path: SettingsPath, uiPage: Pages.Settings);
+PageConfiguration checkoutPageConfig =
+    PageConfiguration(key: 'Checkout', path: CheckoutPath, uiPage: Pages.Checkout);
+PageConfiguration settingsPageConfig = 
+    PageConfiguration(key: 'Settings', path: SettingsPath, uiPage: Pages.Settings);

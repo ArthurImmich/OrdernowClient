@@ -4,7 +4,7 @@ import '../ui/details.dart';
 import '../ui/cart.dart';
 import '../ui/checkout.dart';
 import '../ui/create_account.dart';
-import '../ui/list_items.dart';
+import '../ui/list_restaurants.dart';
 import '../ui/login.dart';
 import '../ui/settings.dart';
 import '../ui/splash.dart';
@@ -81,11 +81,11 @@ class Delegate extends RouterDelegate<PageConfiguration>
   //and a child widgets corresponding the page.
   MaterialPage _createPage(Widget child, PageConfiguration pageConfig) {
     return MaterialPage(
-        child: child,
-        key: Key(pageConfig.key),
-        name: pageConfig.path,
-        arguments: pageConfig
-        );
+      child: child,
+      key: Key(pageConfig.key),
+      name: pageConfig.path,
+      arguments: pageConfig
+    );
   }
 
   //Adds the MaterialPage to the _pages list
@@ -104,25 +104,25 @@ class Delegate extends RouterDelegate<PageConfiguration>
     if (shouldAddPage) {
       switch (pageConfig.uiPage) {
         case Pages.Splash:
-          _addPageData(Splash(), SplashPageConfig);
+          _addPageData(Splash(), splashPageConfig);
           break;
         case Pages.Login:
-          _addPageData(Login(), LoginPageConfig);
+          _addPageData(Login(), loginPageConfig);
           break;
         case Pages.CreateAccount:
-          _addPageData(CreateAccount(), CreateAccountPageConfig);
+          _addPageData(CreateAccount(), createAccountPageConfig);
           break;
         case Pages.List:
-          _addPageData(ListItems(), ListItemsPageConfig);
+          _addPageData(ListItems(), listItemsPageConfig);
           break;
         case Pages.Cart:
-          _addPageData(Cart(), CartPageConfig);
+          _addPageData(Cart(), cartPageConfig);
           break;
         case Pages.Checkout:
-          _addPageData(Checkout(), CheckoutPageConfig);
+          _addPageData(Checkout(), checkoutPageConfig);
           break;
         case Pages.Settings:
-          _addPageData(Settings(), SettingsPageConfig);
+          _addPageData(Settings(), settingsPageConfig);
           break;
         default:
           break;
@@ -168,49 +168,51 @@ class Delegate extends RouterDelegate<PageConfiguration>
   //Handles URL and sets routes according to it
   void parseRoute(Uri uri) {
     if (uri.pathSegments.isEmpty) {
-      setNewRoutePath(SplashPageConfig);
+      setNewRoutePath(splashPageConfig);
       return;
     }
 
     //Handle navapp://deeplinks/details/#
     if (uri.pathSegments.length == 2) {
       if (uri.pathSegments[0] == 'details') {
-        pushWidget(Details(int.parse(uri.pathSegments[1])), DetailsPageConfig);
+        PageConfiguration detailsConfiguration = detailsPageConfig;
+        detailsConfiguration.path = detailsConfiguration.path + "/" + uri.pathSegments[1];
+        pushWidget(Details(int.parse(uri.pathSegments[1])), detailsPageConfig);
       }
     } else if (uri.pathSegments.length == 1) {
       final path = uri.pathSegments[0];
       switch (path) {
         case 'splash':
-          setNewRoutePath(SplashPageConfig);
+          setNewRoutePath(splashPageConfig);
           break;
         case 'login':
-          setNewRoutePath(LoginPageConfig);
+          setNewRoutePath(loginPageConfig);
           break;
         case 'createAccount':
           setPath([
-            _createPage(Login(), LoginPageConfig),
-            _createPage(CreateAccount(), CreateAccountPageConfig)
+            _createPage(Login(), loginPageConfig),
+            _createPage(CreateAccount(), createAccountPageConfig)
           ]);
           break;
         case 'listItems':
-          setNewRoutePath(ListItemsPageConfig);
+          setNewRoutePath(listItemsPageConfig);
           break;
         case 'cart':
           setPath([
-            _createPage(ListItems(), ListItemsPageConfig),
-            _createPage(Cart(), CartPageConfig)
+            _createPage(ListItems(), listItemsPageConfig),
+            _createPage(Cart(), cartPageConfig)
           ]);
           break;
         case 'checkout':
           setPath([
-            _createPage(ListItems(), ListItemsPageConfig),
-            _createPage(Checkout(), CheckoutPageConfig)
+            _createPage(ListItems(), listItemsPageConfig),
+            _createPage(Checkout(), checkoutPageConfig)
           ]);
           break;
         case 'settings':
           setPath([
-            _createPage(ListItems(), ListItemsPageConfig),
-            _createPage(Settings(), SettingsPageConfig)
+            _createPage(ListItems(), listItemsPageConfig),
+            _createPage(Settings(), settingsPageConfig)
           ]);
           break;
       }

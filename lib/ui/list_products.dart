@@ -6,7 +6,7 @@ import '../router/ui_pages.dart';
 class ListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final items = List<String>.generate(10000, (i) => 'Item $i');
+    final items = List<String>.generate(100, (i) => 'Products $i');
     
     return Scaffold(
       appBar: AppBar(
@@ -20,10 +20,10 @@ class ListItems extends StatelessWidget {
         actions: [
           IconButton(
               icon: const Icon(Icons.settings),
-              onPressed: () => Delegate.instance.push(SettingsPageConfig)),
+              onPressed: () => Delegate.instance.push(settingsPageConfig)),
           IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
-              onPressed: () => Delegate.instance.push(CheckoutPageConfig))
+              onPressed: () => Delegate.instance.push(checkoutPageConfig))
         ],
       ),
       body: SafeArea(
@@ -33,7 +33,7 @@ class ListItems extends StatelessWidget {
             return ListTile(
               title: Text('${items[index]}'),
               onTap: () {
-                Delegate.instance.pushWidget(Details(index), DetailsPageConfig);
+                Delegate.instance.pushWidget(Details(index), detailsPageConfig);
               },
             );
           },

@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
-import '../cart_holder.dart';
 import '../router/delegate.dart';
+import 'package:OrdernowClient/ui/details.dart';
 import '../router/ui_pages.dart';
 
-class Cart extends StatelessWidget {
+class ListItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final cartHolder = CartHolder();
-    final items = cartHolder.cartItems;
+    final items = List<String>.generate(10000, (i) => 'Restaurants $i');
+    
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.lightBlue,
         title: const Text(
-          'Cart',
+          'Items for sale',
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
         ),
         actions: [
+          IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () => Delegate.instance.push(settingsPageConfig)),
           IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
               onPressed: () => Delegate.instance.push(checkoutPageConfig))
@@ -29,6 +32,9 @@ class Cart extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               title: Text('${items[index]}'),
+              onTap: () {
+                Delegate.instance.pushWidget(Details(index), detailsPageConfig);
+              },
             );
           },
         ),

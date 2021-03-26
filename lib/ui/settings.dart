@@ -23,7 +23,7 @@ class Settings extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   // saveLoginState();
-                  Delegate.instance.setNewRoutePath(SplashPageConfig);
+                  Delegate.instance.setNewRoutePath(splashPageConfig);
                 },
                 child: const Text('Log Out'),
               ),

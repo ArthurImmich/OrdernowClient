@@ -81,7 +81,7 @@ class _LoginState extends State<Login> {
                                 color: Theme.of(context).primaryColor),
                           ),
                         ),
-                        onPressed: () => Delegate.instance.push(CreateAccountPageConfig),
+                        onPressed: () => Delegate.instance.push(createAccountPageConfig),
                         child: const Text(
                           'Create Account',
                           style: TextStyle(color: Colors.white),
@@ -102,7 +102,7 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () {
                           //saveLoginState();
-                          Delegate.instance.push(ListItemsPageConfig);
+                          Delegate.instance.push(listItemsPageConfig);
                         },
                         child: const Text('Login'),
                       ),
