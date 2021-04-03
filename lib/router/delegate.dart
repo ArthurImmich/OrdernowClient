@@ -9,6 +9,7 @@ import '../ui/login.dart';
 import '../ui/settings.dart';
 import '../ui/splash.dart';
 import 'ui_pages.dart';
+
 class Delegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {
   //Pages list
@@ -66,7 +67,7 @@ class Delegate extends RouterDelegate<PageConfiguration>
   }
 
   //Calls _removePage only if _pages lenght is bigger than 1
-  //Returns a future boolean confirming or not it
+  //Returns a future boolean confirming it or not
   @override
   Future<bool> popRoute() {
     if (_pages.length > 1) {
@@ -81,11 +82,10 @@ class Delegate extends RouterDelegate<PageConfiguration>
   //and a child widgets corresponding the page.
   MaterialPage _createPage(Widget child, PageConfiguration pageConfig) {
     return MaterialPage(
-      child: child,
-      key: Key(pageConfig.key),
-      name: pageConfig.path,
-      arguments: pageConfig
-    );
+        child: child,
+        key: Key(pageConfig.key),
+        name: pageConfig.path,
+        arguments: pageConfig);
   }
 
   //Adds the MaterialPage to the _pages list
@@ -113,7 +113,12 @@ class Delegate extends RouterDelegate<PageConfiguration>
           _addPageData(CreateAccount(), createAccountPageConfig);
           break;
         case Pages.List:
-          _addPageData(ListItems(), listItemsPageConfig);
+          _addPageData(ListRestaurants(), listItemsPageConfig);
+          break;
+        case Pages.Details:
+          _addPageData(
+              Details(int.parse(Uri.parse(pageConfig.path).pathSegments[1])),
+              listItemsPageConfig);
           break;
         case Pages.Cart:
           _addPageData(Cart(), cartPageConfig);
@@ -153,6 +158,7 @@ class Delegate extends RouterDelegate<PageConfiguration>
   }
 
   //Clears _page list and adds a new page
+  //Get the information from parseRouteInformation
   @override
   Future<void> setNewRoutePath(PageConfiguration configuration) async {
     _pages.clear();
@@ -176,7 +182,8 @@ class Delegate extends RouterDelegate<PageConfiguration>
     if (uri.pathSegments.length == 2) {
       if (uri.pathSegments[0] == 'details') {
         PageConfiguration detailsConfiguration = detailsPageConfig;
-        detailsConfiguration.path = detailsConfiguration.path + "/" + uri.pathSegments[1];
+        detailsConfiguration.path =
+            detailsConfiguration.path + "/" + uri.pathSegments[1];
         pushWidget(Details(int.parse(uri.pathSegments[1])), detailsPageConfig);
       }
     } else if (uri.pathSegments.length == 1) {
@@ -199,19 +206,19 @@ class Delegate extends RouterDelegate<PageConfiguration>
           break;
         case 'cart':
           setPath([
-            _createPage(ListItems(), listItemsPageConfig),
+            _createPage(ListRestaurants(), listItemsPageConfig),
             _createPage(Cart(), cartPageConfig)
           ]);
           break;
         case 'checkout':
           setPath([
-            _createPage(ListItems(), listItemsPageConfig),
+            _createPage(ListRestaurants(), listItemsPageConfig),
             _createPage(Checkout(), checkoutPageConfig)
           ]);
           break;
         case 'settings':
           setPath([
-            _createPage(ListItems(), listItemsPageConfig),
+            _createPage(ListRestaurants(), listItemsPageConfig),
             _createPage(Settings(), settingsPageConfig)
           ]);
           break;

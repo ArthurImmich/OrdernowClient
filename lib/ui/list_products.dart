@@ -3,11 +3,11 @@ import '../router/delegate.dart';
 import 'package:OrdernowClient/ui/details.dart';
 import '../router/ui_pages.dart';
 
-class ListItems extends StatelessWidget {
+class ListProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = List<String>.generate(100, (i) => 'Products $i');
-    
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

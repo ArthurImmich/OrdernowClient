@@ -3,11 +3,11 @@ import '../router/delegate.dart';
 import 'package:OrdernowClient/ui/details.dart';
 import '../router/ui_pages.dart';
 
-class ListItems extends StatelessWidget {
+class ListRestaurants extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = List<String>.generate(10000, (i) => 'Restaurants $i');
-    
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -33,6 +33,7 @@ class ListItems extends StatelessWidget {
             return ListTile(
               title: Text('${items[index]}'),
               onTap: () {
+                detailsPageConfig.path = DetailsPath + '/$index';
                 Delegate.instance.pushWidget(Details(index), detailsPageConfig);
               },
             );
