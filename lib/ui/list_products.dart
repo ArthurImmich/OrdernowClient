@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import '../router/delegate.dart';
-import 'package:OrdernowClient/ui/details.dart';
+import 'package:ordernow_client/ui/details.dart';
 import '../router/ui_pages.dart';
 
 class ListProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final items = List<String>.generate(100, (i) => 'Products $i');
+    Delegate delegate = Router.of(context).routerDelegate;
 
     return Scaffold(
       appBar: AppBar(
@@ -20,10 +21,10 @@ class ListProducts extends StatelessWidget {
         actions: [
           IconButton(
               icon: const Icon(Icons.settings),
-              onPressed: () => Delegate.instance.push(settingsPageConfig)),
+              onPressed: () => delegate.push(settingsPageConfig)),
           IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
-              onPressed: () => Delegate.instance.push(checkoutPageConfig))
+              onPressed: () => delegate.push(checkoutPageConfig))
         ],
       ),
       body: SafeArea(
@@ -33,7 +34,7 @@ class ListProducts extends StatelessWidget {
             return ListTile(
               title: Text('${items[index]}'),
               onTap: () {
-                Delegate.instance.pushWidget(Details(index), detailsPageConfig);
+                delegate.pushWidget(Details(index), detailsPageConfig);
               },
             );
           },

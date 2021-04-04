@@ -81,7 +81,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         ),
                         onPressed: () {
                           // saveLoginState();
-                          Delegate.instance.setNewRoutePath(listItemsPageConfig);
+                          Delegate().setNewRoutePath(listItemsPageConfig);
                         },
                         child: const Text(
                           'Create Account',
@@ -102,7 +102,7 @@ class _CreateAccountState extends State<CreateAccount> {
                           ),
                         ),
                         onPressed: () {
-                          Delegate.instance.popRoute();
+                          Delegate().popRoute();
                         },
                         child: const Text('Cancel'),
                       ),

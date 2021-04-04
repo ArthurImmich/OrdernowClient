@@ -39,13 +39,15 @@ class _SplashState extends State<Splash> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    Delegate delegate = Router.of(context).routerDelegate;
+
     if (!_initialized) {
       _initialized = true;
       Timer(const Duration(milliseconds: 2000), () {
         if (loggedIn) {
-          Delegate.instance.replace(listItemsPageConfig);
+          delegate.replace(listItemsPageConfig);
         } else {
-          Delegate.instance.replace(loginPageConfig);
+          delegate.replace(loginPageConfig);
         }
       });
     }

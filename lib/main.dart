@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:OrdernowClient/router/back_dispatcher.dart';
+import 'package:ordernow_client/router/back_dispatcher.dart';
+import 'package:ordernow_client/router/ui_pages.dart';
 import 'router/delegate.dart';
 import 'router/parser.dart';
 
@@ -15,22 +17,21 @@ class OrdernowApp extends StatefulWidget {
 class _OrdernowAppState extends State<OrdernowApp> {
   final Parser _ordernowParser = Parser();
   BackButtonDispatcher _backButtonDispatcher;
+  Delegate delegate = Delegate();
 
   //Set state according to URI
   Future<void> initPlatformState() async {
-    _backButtonDispatcher = BackDispatcher(Delegate.instance);
-    final uri = Uri.base;
-    print("init platform");
+    _backButtonDispatcher = BackDispatcher(delegate);
     if (!mounted) return;
     setState(() {
-      Delegate.instance.parseRoute(uri);
+      delegate.push(splashPageConfig);
     });
   }
 
   @override
   void initState() {
-    super.initState();
     initPlatformState();
+    super.initState();
   }
 
   @override
@@ -38,7 +39,7 @@ class _OrdernowAppState extends State<OrdernowApp> {
     return MaterialApp.router(
       title: 'Ordernow',
       routeInformationParser: _ordernowParser,
-      routerDelegate: Delegate.instance,
+      routerDelegate: delegate,
       backButtonDispatcher: _backButtonDispatcher,
     );
   }

@@ -10,6 +10,7 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Delegate delegate = Router.of(context).routerDelegate;
     final cartHolder = CartHolder();
     return Scaffold(
       appBar: AppBar(
@@ -29,12 +30,12 @@ class Details extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   cartHolder.addItem('Item $id');
-                  Delegate.instance.popRoute();
+                  delegate.popRoute();
                 },
                 child: const Text('Add to Cart'),
               ),
               ElevatedButton(
-                onPressed: () => Delegate.instance.push(cartPageConfig),
+                onPressed: () => delegate.push(cartPageConfig),
                 child: const Text('Cart'),
               ),
             ],

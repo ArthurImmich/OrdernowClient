@@ -12,6 +12,7 @@ class Parser extends RouteInformationParser<PageConfiguration> {
     if (uri.pathSegments.isEmpty) {
       return splashPageConfig;
     }
+    print('parseRouteInformation');
 
     final path = "/" + uri.pathSegments[0];
 

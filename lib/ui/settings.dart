@@ -5,6 +5,7 @@ import '../router/ui_pages.dart';
 class Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Delegate delegate = Router.of(context).routerDelegate;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -23,7 +24,7 @@ class Settings extends StatelessWidget {
               ElevatedButton(
                 onPressed: () async {
                   // saveLoginState();
-                  Delegate.instance.setNewRoutePath(splashPageConfig);
+                  delegate.setNewRoutePath(splashPageConfig);
                 },
                 child: const Text('Log Out'),
               ),

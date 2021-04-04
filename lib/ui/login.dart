@@ -16,6 +16,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    Delegate delegate = Router.of(context).routerDelegate;
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -81,7 +82,8 @@ class _LoginState extends State<Login> {
                                 color: Theme.of(context).primaryColor),
                           ),
                         ),
-                        onPressed: () => Delegate.instance.push(createAccountPageConfig),
+                        onPressed: () =>
+                            Delegate().push(createAccountPageConfig),
                         child: const Text(
                           'Create Account',
                           style: TextStyle(color: Colors.white),
@@ -102,7 +104,8 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () {
                           //saveLoginState();
-                          Delegate.instance.push(listItemsPageConfig);
+
+                          delegate.push(listItemsPageConfig);
                         },
                         child: const Text('Login'),
                       ),

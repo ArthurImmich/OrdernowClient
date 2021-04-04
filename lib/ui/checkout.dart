@@ -39,15 +39,17 @@ class Checkout extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Delegate.instance.setNewRoutePath(listItemsPageConfig);
+                      Delegate().setNewRoutePath(listItemsPageConfig);
                     },
                     child: const Text('Back To List'),
                   ),
-                  const SizedBox(width: 16,),
+                  const SizedBox(
+                    width: 16,
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       cartHolder.clear();
-                      Delegate.instance.setNewRoutePath(listItemsPageConfig);
+                      Delegate().setNewRoutePath(listItemsPageConfig);
                     },
                     child: const Text('Clear Cart'),
                   ),

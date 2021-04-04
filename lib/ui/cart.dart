@@ -1,6 +1,6 @@
+import 'package:ordernow_client/router/delegate.dart';
 import 'package:flutter/material.dart';
 import '../cart_holder.dart';
-import '../router/delegate.dart';
 import '../router/ui_pages.dart';
 
 class Cart extends StatelessWidget {
@@ -8,6 +8,8 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartHolder = CartHolder();
     final items = cartHolder.cartItems;
+    Delegate delegate = Router.of(context).routerDelegate;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -20,7 +22,7 @@ class Cart extends StatelessWidget {
         actions: [
           IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
-              onPressed: () => Delegate.instance.push(checkoutPageConfig))
+              onPressed: () => delegate.push(checkoutPageConfig))
         ],
       ),
       body: SafeArea(

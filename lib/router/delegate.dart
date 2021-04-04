@@ -15,8 +15,6 @@ class Delegate extends RouterDelegate<PageConfiguration>
   //Pages list
   final List<Page> _pages = [];
 
-  static Delegate instance = Delegate();
-
   //Back button dispatcher
   BackButtonDispatcher backButtonDispatcher;
 
@@ -173,6 +171,7 @@ class Delegate extends RouterDelegate<PageConfiguration>
 
   //Handles URL and sets routes according to it
   void parseRoute(Uri uri) {
+    print(uri);
     if (uri.pathSegments.isEmpty) {
       setNewRoutePath(splashPageConfig);
       return;
