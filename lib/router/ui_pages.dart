@@ -33,15 +33,15 @@ PageConfiguration splashPageConfig =
     PageConfiguration(key: 'Splash', path: SplashPath, uiPage: Pages.Splash);
 PageConfiguration loginPageConfig =
     PageConfiguration(key: 'Login', path: LoginPath, uiPage: Pages.Login);
-PageConfiguration createAccountPageConfig = 
-    PageConfiguration(key: 'CreateAccount', path: CreateAccountPath, uiPage: Pages.CreateAccount);
-PageConfiguration listItemsPageConfig =
-    PageConfiguration(key: 'ListItems', path: ListItemsPath, uiPage: Pages.List);
+PageConfiguration createAccountPageConfig = PageConfiguration(
+    key: 'CreateAccount', path: CreateAccountPath, uiPage: Pages.CreateAccount);
+PageConfiguration listItemsPageConfig = PageConfiguration(
+    key: 'ListItems', path: ListItemsPath, uiPage: Pages.List);
 PageConfiguration detailsPageConfig =
     PageConfiguration(key: 'Details', path: DetailsPath, uiPage: Pages.Details);
 PageConfiguration cartPageConfig =
     PageConfiguration(key: 'Cart', path: CartPath, uiPage: Pages.Cart);
-PageConfiguration checkoutPageConfig =
-    PageConfiguration(key: 'Checkout', path: CheckoutPath, uiPage: Pages.Checkout);
-PageConfiguration settingsPageConfig = 
-    PageConfiguration(key: 'Settings', path: SettingsPath, uiPage: Pages.Settings);
+PageConfiguration checkoutPageConfig = PageConfiguration(
+    key: 'Checkout', path: CheckoutPath, uiPage: Pages.Checkout);
+PageConfiguration settingsPageConfig = PageConfiguration(
+    key: 'Settings', path: SettingsPath, uiPage: Pages.Settings);

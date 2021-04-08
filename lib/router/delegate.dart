@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../ui/details.dart';
-import '../ui/cart.dart';
-import '../ui/checkout.dart';
-import '../ui/create_account.dart';
-import '../ui/list_restaurants.dart';
-import '../ui/login.dart';
-import '../ui/settings.dart';
-import '../ui/splash.dart';
+import '../pages/details.dart';
+import '../pages/cart.dart';
+import '../pages/checkout.dart';
+import '../pages/create_account.dart';
+import '../pages/list_restaurants.dart';
+import '../pages/login.dart';
+import '../pages/settings.dart';
+import '../pages/splash.dart';
 import 'ui_pages.dart';
 
 class Delegate extends RouterDelegate<PageConfiguration>

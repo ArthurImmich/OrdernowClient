@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../router/delegate.dart';
-import 'package:ordernow_client/ui/details.dart';
+import 'package:ordernow_client/pages/details.dart';
 import '../router/ui_pages.dart';
 
 class ListProducts extends StatelessWidget {
