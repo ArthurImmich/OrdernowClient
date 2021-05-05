@@ -81,7 +81,7 @@ class _CreateAccountState extends State<CreateAccount> {
                         ),
                         onPressed: () {
                           // saveLoginState();
-                          Delegate().setNewRoutePath(listItemsPageConfig);
+                          Delegate().setNewRoutePath(listRestaurantsPageConfig);
                         },
                         child: const Text(
                           'Create Account',

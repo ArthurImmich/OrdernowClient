@@ -23,13 +23,13 @@ class Restaurant {
   }
 
   Map<String, dynamic> toJson() {
-    var data = Map<String, dynamic>();
-    data['adress'] = adress;
-    data['number'] = number;
-    data['city'] = city;
-    data['image'] = image;
-    data['name'] = name;
-    data['descricao'] = descricao;
-    return data;
+    var json = Map<String, dynamic>();
+    json['adress'] = adress;
+    json['number'] = number;
+    json['city'] = city;
+    json['image'] = image;
+    json['name'] = name;
+    json['descricao'] = descricao;
+    return json;
   }
 }

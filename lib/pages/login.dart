@@ -104,8 +104,7 @@ class _LoginState extends State<Login> {
                         ),
                         onPressed: () {
                           //saveLoginState();
-
-                          delegate.push(listItemsPageConfig);
+                          delegate.push(listRestaurantsPageConfig);
                         },
                         child: const Text('Login'),
                       ),

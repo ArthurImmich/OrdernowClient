@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ordernow_client/pages/list_products.dart';
 import 'ui_pages.dart';
 
 class Parser extends RouteInformationParser<PageConfiguration> {
@@ -12,8 +13,6 @@ class Parser extends RouteInformationParser<PageConfiguration> {
     if (uri.pathSegments.isEmpty) {
       return splashPageConfig;
     }
-    print('parseRouteInformation');
-
     final path = "/" + uri.pathSegments[0];
 
     switch (path) {
@@ -23,8 +22,12 @@ class Parser extends RouteInformationParser<PageConfiguration> {
         return loginPageConfig;
       case CreateAccountPath:
         return createAccountPageConfig;
-      case ListItemsPath:
-        return listItemsPageConfig;
+      case ListRestaurantsPath:
+        return listRestaurantsPageConfig;
+      case ListProductsPath:
+        listProductsPageConfig.path =
+            ListProductsPath + '/' + uri.pathSegments[1];
+        return listProductsPageConfig;
       case DetailsPath:
         detailsPageConfig.path = DetailsPath + '/' + uri.pathSegments[1];
         return detailsPageConfig;

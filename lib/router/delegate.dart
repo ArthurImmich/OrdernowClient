@@ -5,6 +5,7 @@ import '../pages/cart.dart';
 import '../pages/checkout.dart';
 import '../pages/create_account.dart';
 import '../pages/list_restaurants.dart';
+import '../pages/list_products.dart';
 import '../pages/login.dart';
 import '../pages/settings.dart';
 import '../pages/splash.dart';
@@ -110,13 +111,19 @@ class Delegate extends RouterDelegate<PageConfiguration>
         case Pages.CreateAccount:
           _addPageData(CreateAccount(), createAccountPageConfig);
           break;
-        case Pages.List:
-          _addPageData(ListRestaurants(), listItemsPageConfig);
+        case Pages.Restaurants:
+          _addPageData(ListRestaurants(), listRestaurantsPageConfig);
+          break;
+        case Pages.Products:
+          _addPageData(
+              ListProducts(
+                  int.parse(Uri.parse(pageConfig.path).pathSegments[1])),
+              listProductsPageConfig);
           break;
         case Pages.Details:
           _addPageData(
               Details(int.parse(Uri.parse(pageConfig.path).pathSegments[1])),
-              listItemsPageConfig);
+              detailsPageConfig);
           break;
         case Pages.Cart:
           _addPageData(Cart(), cartPageConfig);
@@ -185,6 +192,16 @@ class Delegate extends RouterDelegate<PageConfiguration>
             detailsConfiguration.path + "/" + uri.pathSegments[1];
         pushWidget(Details(int.parse(uri.pathSegments[1])), detailsPageConfig);
       }
+      if (uri.pathSegments[0] == 'listProducts') {
+        PageConfiguration productsConfiguration = listProductsPageConfig;
+        productsConfiguration.path =
+            productsConfiguration.path + "/" + uri.pathSegments[1];
+        setPath([
+          _createPage(ListRestaurants(), listRestaurantsPageConfig),
+          _createPage(ListProducts(int.parse(uri.pathSegments[1])),
+              productsConfiguration),
+        ]);
+      }
     } else if (uri.pathSegments.length == 1) {
       final path = uri.pathSegments[0];
       switch (path) {
@@ -200,24 +217,24 @@ class Delegate extends RouterDelegate<PageConfiguration>
             _createPage(CreateAccount(), createAccountPageConfig)
           ]);
           break;
-        case 'listItems':
-          setNewRoutePath(listItemsPageConfig);
+        case 'listRestaurants':
+          setNewRoutePath(listRestaurantsPageConfig);
           break;
         case 'cart':
           setPath([
-            _createPage(ListRestaurants(), listItemsPageConfig),
+            _createPage(ListRestaurants(), listRestaurantsPageConfig),
             _createPage(Cart(), cartPageConfig)
           ]);
           break;
         case 'checkout':
           setPath([
-            _createPage(ListRestaurants(), listItemsPageConfig),
+            _createPage(ListRestaurants(), listRestaurantsPageConfig),
             _createPage(Checkout(), checkoutPageConfig)
           ]);
           break;
         case 'settings':
           setPath([
-            _createPage(ListRestaurants(), listItemsPageConfig),
+            _createPage(ListRestaurants(), listRestaurantsPageConfig),
             _createPage(Settings(), settingsPageConfig)
           ]);
           break;

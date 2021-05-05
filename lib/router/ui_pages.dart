@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 const String SplashPath = '/splash';
 const String LoginPath = '/login';
 const String CreateAccountPath = '/createAccount';
-const String ListItemsPath = '/listItems';
+const String ListRestaurantsPath = '/listRestaurants';
+const String ListProductsPath = '/listProducts';
 const String DetailsPath = '/details';
 const String CartPath = '/cart';
 const String CheckoutPath = '/checkout';
@@ -13,7 +14,8 @@ enum Pages {
   Splash,
   Login,
   CreateAccount,
-  List,
+  Restaurants,
+  Products,
   Details,
   Cart,
   Checkout,
@@ -35,8 +37,12 @@ PageConfiguration loginPageConfig =
     PageConfiguration(key: 'Login', path: LoginPath, uiPage: Pages.Login);
 PageConfiguration createAccountPageConfig = PageConfiguration(
     key: 'CreateAccount', path: CreateAccountPath, uiPage: Pages.CreateAccount);
-PageConfiguration listItemsPageConfig = PageConfiguration(
-    key: 'ListItems', path: ListItemsPath, uiPage: Pages.List);
+PageConfiguration listRestaurantsPageConfig = PageConfiguration(
+    key: 'ListRestaurants',
+    path: ListRestaurantsPath,
+    uiPage: Pages.Restaurants);
+PageConfiguration listProductsPageConfig = PageConfiguration(
+    key: 'ListProducts', path: ListProductsPath, uiPage: Pages.Products);
 PageConfiguration detailsPageConfig =
     PageConfiguration(key: 'Details', path: DetailsPath, uiPage: Pages.Details);
 PageConfiguration cartPageConfig =

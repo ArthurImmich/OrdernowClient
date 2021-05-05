@@ -19,11 +19,11 @@ class Food {
   }
 
   Map<String, dynamic> toJson() {
-    var data = Map<String, dynamic>();
-    data['id'] = id;
-    data['name'] = name;
-    data['url'] = url;
-    data['price'] = price;
-    return data;
+    var json = Map<String, dynamic>();
+    json['id'] = id;
+    json['name'] = name;
+    json['url'] = url;
+    json['price'] = price;
+    return json;
   }
 }

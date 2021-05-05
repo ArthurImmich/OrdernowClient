@@ -45,7 +45,7 @@ class _SplashState extends State<Splash> {
       _initialized = true;
       Timer(const Duration(milliseconds: 2000), () {
         if (loggedIn) {
-          delegate.replace(listItemsPageConfig);
+          delegate.replace(listRestaurantsPageConfig);
         } else {
           delegate.replace(loginPageConfig);
         }

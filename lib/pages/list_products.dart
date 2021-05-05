@@ -4,17 +4,20 @@ import 'package:ordernow_client/pages/details.dart';
 import '../router/ui_pages.dart';
 
 class ListProducts extends StatelessWidget {
+  final int id;
+  const ListProducts(this.id);
+
   @override
   Widget build(BuildContext context) {
-    final items = List<String>.generate(100, (i) => 'Products $i');
+    final items = List<String>.generate(10000, (i) => 'Products $i');
     Delegate delegate = Router.of(context).routerDelegate;
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.lightBlue,
-        title: const Text(
-          'Items for sale',
+        title: Text(
+          'Products for sale restaurant $id',
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
         ),
@@ -34,6 +37,7 @@ class ListProducts extends StatelessWidget {
             return ListTile(
               title: Text('${items[index]}'),
               onTap: () {
+                detailsPageConfig.path = DetailsPath + '/$index';
                 delegate.pushWidget(Details(index), detailsPageConfig);
               },
             );

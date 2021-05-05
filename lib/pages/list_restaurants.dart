@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ordernow_client/pages/list_products.dart';
 import '../router/delegate.dart';
-import 'package:ordernow_client/pages/details.dart';
 import '../router/ui_pages.dart';
 
 class ListRestaurants extends StatelessWidget {
@@ -14,7 +14,7 @@ class ListRestaurants extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.lightBlue,
         title: const Text(
-          'Items for sale',
+          'Restaurants',
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
         ),
@@ -34,8 +34,9 @@ class ListRestaurants extends StatelessWidget {
             return ListTile(
               title: Text('${items[index]}'),
               onTap: () {
-                detailsPageConfig.path = DetailsPath + '/$index';
-                delegate.pushWidget(Details(index), detailsPageConfig);
+                listProductsPageConfig.path = ListProductsPath + '/$index';
+                delegate.pushWidget(
+                    ListProducts(index), listProductsPageConfig);
               },
             );
           },
