@@ -8,21 +8,17 @@ class Cart extends StatelessWidget {
   Widget build(BuildContext context) {
     final cartHolder = CartHolder();
     final items = cartHolder.cartItems;
-    Delegate delegate = Router.of(context).routerDelegate;
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.lightBlue,
         title: const Text(
           'Cart',
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
         ),
         actions: [
           IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
-              onPressed: () => delegate.push(checkoutPageConfig))
+              onPressed: () => (Router.of(context).routerDelegate as Delegate)
+                  .push(checkoutPageConfig))
         ],
       ),
       body: SafeArea(

@@ -1,25 +1,21 @@
-import 'package:flutter/cupertino.dart';
-
 const String SplashPath = '/splash';
 const String LoginPath = '/login';
 const String CreateAccountPath = '/createAccount';
-const String ListRestaurantsPath = '/listRestaurants';
+const String HomePath = '/home';
 const String ListProductsPath = '/listProducts';
 const String DetailsPath = '/details';
 const String CartPath = '/cart';
 const String CheckoutPath = '/checkout';
-const String SettingsPath = '/settings';
 
 enum Pages {
   Splash,
   Login,
   CreateAccount,
-  Restaurants,
+  Home,
   Products,
   Details,
   Cart,
   Checkout,
-  Settings
 }
 
 class PageConfiguration {
@@ -27,8 +23,11 @@ class PageConfiguration {
   String path;
   final Pages uiPage;
 
-  PageConfiguration(
-      {@required this.key, @required this.path, @required this.uiPage});
+  PageConfiguration({
+    required this.key,
+    required this.path,
+    required this.uiPage,
+  });
 }
 
 PageConfiguration splashPageConfig =
@@ -37,10 +36,8 @@ PageConfiguration loginPageConfig =
     PageConfiguration(key: 'Login', path: LoginPath, uiPage: Pages.Login);
 PageConfiguration createAccountPageConfig = PageConfiguration(
     key: 'CreateAccount', path: CreateAccountPath, uiPage: Pages.CreateAccount);
-PageConfiguration listRestaurantsPageConfig = PageConfiguration(
-    key: 'ListRestaurants',
-    path: ListRestaurantsPath,
-    uiPage: Pages.Restaurants);
+PageConfiguration homePageConfig =
+    PageConfiguration(key: 'Home', path: HomePath, uiPage: Pages.Home);
 PageConfiguration listProductsPageConfig = PageConfiguration(
     key: 'ListProducts', path: ListProductsPath, uiPage: Pages.Products);
 PageConfiguration detailsPageConfig =
@@ -49,5 +46,3 @@ PageConfiguration cartPageConfig =
     PageConfiguration(key: 'Cart', path: CartPath, uiPage: Pages.Cart);
 PageConfiguration checkoutPageConfig = PageConfiguration(
     key: 'Checkout', path: CheckoutPath, uiPage: Pages.Checkout);
-PageConfiguration settingsPageConfig = PageConfiguration(
-    key: 'Settings', path: SettingsPath, uiPage: Pages.Settings);

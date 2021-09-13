@@ -10,16 +10,11 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Delegate delegate = Router.of(context).routerDelegate;
     final cartHolder = CartHolder();
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.lightBlue,
         title: Text(
           'Product $id',
-          style: const TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -30,12 +25,13 @@ class Details extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   cartHolder.addItem('Item $id');
-                  delegate.popRoute();
+                  (Router.of(context).routerDelegate as Delegate).popRoute();
                 },
                 child: const Text('Add to Cart'),
               ),
               ElevatedButton(
-                onPressed: () => delegate.push(cartPageConfig),
+                onPressed: () => (Router.of(context).routerDelegate as Delegate)
+                    .push(cartPageConfig),
                 child: const Text('Cart'),
               ),
             ],

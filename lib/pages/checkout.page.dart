@@ -10,12 +10,8 @@ class Checkout extends StatelessWidget {
     final items = cartHolder.cartItems;
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.lightBlue,
         title: const Text(
           'Checkout',
-          style: TextStyle(
-              fontSize: 20, fontWeight: FontWeight.w500, color: Colors.white),
         ),
       ),
       body: SafeArea(
@@ -39,7 +35,8 @@ class Checkout extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      Delegate().setNewRoutePath(listRestaurantsPageConfig);
+                      (Router.of(context).routerDelegate as Delegate)
+                          .setNewRoutePath(homePageConfig);
                     },
                     child: const Text('Back To List'),
                   ),
@@ -49,7 +46,8 @@ class Checkout extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       cartHolder.clear();
-                      Delegate().setNewRoutePath(listRestaurantsPageConfig);
+                      (Router.of(context).routerDelegate as Delegate)
+                          .setNewRoutePath(homePageConfig);
                     },
                     child: const Text('Clear Cart'),
                   ),

@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import '../router/delegate.dart';
-import 'package:ordernow_client/pages/details.dart';
+import 'package:ordernow_client/pages/details.page.dart';
 import '../router/ui_pages.dart';
 
-class ListProducts extends StatelessWidget {
+class Products extends StatelessWidget {
   final int id;
-  const ListProducts(this.id);
+  Products(this.id);
 
   @override
   Widget build(BuildContext context) {
     final items = List<String>.generate(10000, (i) => 'Products $i');
-    Delegate delegate = Router.of(context).routerDelegate;
 
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.lightBlue,
         title: Text(
           'Products for sale restaurant $id',
           style: TextStyle(
@@ -23,11 +20,9 @@ class ListProducts extends StatelessWidget {
         ),
         actions: [
           IconButton(
-              icon: const Icon(Icons.settings),
-              onPressed: () => delegate.push(settingsPageConfig)),
-          IconButton(
               icon: const Icon(Icons.add_shopping_cart_sharp),
-              onPressed: () => delegate.push(checkoutPageConfig))
+              onPressed: () => (Router.of(context).routerDelegate as Delegate)
+                  .push(checkoutPageConfig))
         ],
       ),
       body: SafeArea(
@@ -38,7 +33,8 @@ class ListProducts extends StatelessWidget {
               title: Text('${items[index]}'),
               onTap: () {
                 detailsPageConfig.path = DetailsPath + '/$index';
-                delegate.pushWidget(Details(index), detailsPageConfig);
+                (Router.of(context).routerDelegate as Delegate)
+                    .pushWidget(Details(index), detailsPageConfig);
               },
             );
           },

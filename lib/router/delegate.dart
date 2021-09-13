@@ -1,23 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../pages/details.dart';
-import '../pages/cart.dart';
-import '../pages/checkout.dart';
-import '../pages/create_account.dart';
-import '../pages/list_restaurants.dart';
-import '../pages/list_products.dart';
-import '../pages/login.dart';
-import '../pages/settings.dart';
-import '../pages/splash.dart';
+import 'package:ordernow_client/pages/home.page.dart';
+import '../pages/details.page.dart';
+import '../pages/cart.page.dart';
+import '../pages/checkout.page.dart';
+import '../pages/create_account.page.dart';
+import '../pages/products.page.dart';
+import '../pages/login.page.dart';
+import '../pages/splash.page.dart';
 import 'ui_pages.dart';
 
 class Delegate extends RouterDelegate<PageConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<PageConfiguration> {
   //Pages list
   final List<Page> _pages = [];
-
   //Back button dispatcher
-  BackButtonDispatcher backButtonDispatcher;
+  late final BackButtonDispatcher backButtonDispatcher;
 
   //Allows only one instance of this RouterDelegate and it
   //can be acessed from anywhere
@@ -59,9 +57,7 @@ class Delegate extends RouterDelegate<PageConfiguration>
 
   //Removes a page from _pages list and notifies its listners
   void _removePage(MaterialPage page) {
-    if (page != null) {
-      _pages.remove(page);
-    }
+    _pages.remove(page);
     notifyListeners();
   }
 
@@ -70,7 +66,7 @@ class Delegate extends RouterDelegate<PageConfiguration>
   @override
   Future<bool> popRoute() {
     if (_pages.length > 1) {
-      _removePage(_pages.last);
+      _removePage(_pages.last as MaterialPage<dynamic>);
       return Future.value(true);
     }
     return Future.value(false);
@@ -82,7 +78,7 @@ class Delegate extends RouterDelegate<PageConfiguration>
   MaterialPage _createPage(Widget child, PageConfiguration pageConfig) {
     return MaterialPage(
         child: child,
-        key: Key(pageConfig.key),
+        key: Key(pageConfig.key) as LocalKey,
         name: pageConfig.path,
         arguments: pageConfig);
   }
@@ -111,13 +107,12 @@ class Delegate extends RouterDelegate<PageConfiguration>
         case Pages.CreateAccount:
           _addPageData(CreateAccount(), createAccountPageConfig);
           break;
-        case Pages.Restaurants:
-          _addPageData(ListRestaurants(), listRestaurantsPageConfig);
+        case Pages.Home:
+          _addPageData(Home(), homePageConfig);
           break;
         case Pages.Products:
           _addPageData(
-              ListProducts(
-                  int.parse(Uri.parse(pageConfig.path).pathSegments[1])),
+              Products(int.parse(Uri.parse(pageConfig.path).pathSegments[1])),
               listProductsPageConfig);
           break;
         case Pages.Details:
@@ -130,9 +125,6 @@ class Delegate extends RouterDelegate<PageConfiguration>
           break;
         case Pages.Checkout:
           _addPageData(Checkout(), checkoutPageConfig);
-          break;
-        case Pages.Settings:
-          _addPageData(Settings(), settingsPageConfig);
           break;
         default:
           break;
@@ -173,7 +165,8 @@ class Delegate extends RouterDelegate<PageConfiguration>
   //Returns the page that matches routeName
   MaterialPage _getPage(Pages routeName) {
     return _pages.lastWhere((element) =>
-        (element.arguments as PageConfiguration).uiPage == routeName);
+            (element.arguments as PageConfiguration).uiPage == routeName)
+        as MaterialPage<dynamic>;
   }
 
   //Handles URL and sets routes according to it
@@ -197,9 +190,9 @@ class Delegate extends RouterDelegate<PageConfiguration>
         productsConfiguration.path =
             productsConfiguration.path + "/" + uri.pathSegments[1];
         setPath([
-          _createPage(ListRestaurants(), listRestaurantsPageConfig),
-          _createPage(ListProducts(int.parse(uri.pathSegments[1])),
-              productsConfiguration),
+          _createPage(Home(), homePageConfig),
+          _createPage(
+              Products(int.parse(uri.pathSegments[1])), productsConfiguration),
         ]);
       }
     } else if (uri.pathSegments.length == 1) {
@@ -217,25 +210,24 @@ class Delegate extends RouterDelegate<PageConfiguration>
             _createPage(CreateAccount(), createAccountPageConfig)
           ]);
           break;
-        case 'listRestaurants':
-          setNewRoutePath(listRestaurantsPageConfig);
+        case 'home':
+          setNewRoutePath(homePageConfig);
           break;
         case 'cart':
           setPath([
-            _createPage(ListRestaurants(), listRestaurantsPageConfig),
+            _createPage(Home(), homePageConfig),
             _createPage(Cart(), cartPageConfig)
           ]);
           break;
         case 'checkout':
           setPath([
-            _createPage(ListRestaurants(), listRestaurantsPageConfig),
+            _createPage(Home(), homePageConfig),
             _createPage(Checkout(), checkoutPageConfig)
           ]);
           break;
-        case 'settings':
+        case 'profile':
           setPath([
-            _createPage(ListRestaurants(), listRestaurantsPageConfig),
-            _createPage(Settings(), settingsPageConfig)
+            _createPage(Home(), homePageConfig),
           ]);
           break;
       }
